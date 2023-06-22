@@ -7,9 +7,9 @@ Vagrant.configure("2") do |config|
   # please see the online documentation at vagrantup.com.
 
   # Every Vagrant virtual environment requires a box to build off of.
-  config.vm.box = "debian-wheezy"
+  config.vm.box = "debian/buster64"
 
-  config.vm.synced_folder "src/", "/var/www/"
+  config.vm.synced_folder "src/", "/var/www", type: "virtualbox"
   config.vm.provision :shell, :path => "gazelle-setup.sh"
   config.vm.network :forwarded_port, guest: 80, host: 8080
 
