@@ -7,11 +7,14 @@ then
 fi
 touch ~/.runonce
 
-echo mysql-server mysql-server/root_password password em%G9Lrey4^N | sudo debconf-set-selections
-echo mysql-server mysql-server/root_password_again password em%G9Lrey4^N | sudo debconf-set-selections
+echo mariadb-server mariadb-server/root_password password em%G9Lrey4^N | sudo debconf-set-selections
+echo mariadb-server mariadb-server/root_password_again password em%G9Lrey4^N | sudo debconf-set-selections
 
 sudo apt-get update
-sudo apt-get install -y git nginx memcached mysql-client mysql-server php5-fpm php5-memcached php5-memcache php5-mcrypt php5-mysql php5-cli sphinxsearch
+sudo apt-get install -y mariadb-server mariadb-client
+sudo apt-get install -y php php-mysql php-fpm php-memcached php-mcrypt
+sudo apt-get install -y git nginx memcached sphinxsearch
+sudo apt-get install -y 
 sudo /etc/init.d/php5-fpm restart
 
 #sed -i s/'index index.html index.htm;'/'index index.html index.htm index.php;'/ /etc/nginx/sites-available/default
@@ -26,7 +29,7 @@ sudo git clone https://github.com/WhatCD/Gazelle.git /var/www/tmp
 sudo rsync -a /var/www/tmp/ /var/www/
 sudo rm -rf /var/www/tmp
 
-mysql -uroot -pem%G9Lrey4^N < /var/www/gazelle.sql
+mariadb -u root -p 'em%G9Lrey4^N' < /var/www/gazelle.sql
 
 sudo cp /vagrant/sphinx.conf /var/www/
 sudo mkdir -p /var/data/sphinx
