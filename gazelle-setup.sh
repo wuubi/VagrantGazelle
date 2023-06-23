@@ -29,7 +29,7 @@ sudo git clone https://github.com/WhatCD/Gazelle.git /var/www/tmp
 sudo rsync -a /var/www/tmp/ /var/www/
 sudo rm -rf /var/www/tmp
 
-mariadb -u root -p 'em%G9Lrey4^N' < /var/www/gazelle.sql
+mysql -u root -p 'em%G9Lrey4^N' < /var/www/gazelle.sql
 
 sudo cp /vagrant/sphinx.conf /var/www/
 sudo mkdir -p /var/data/sphinx
